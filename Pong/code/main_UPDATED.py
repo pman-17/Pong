@@ -5,7 +5,7 @@ import json
 class Game:
     def __init__(self):
         pygame.init() 
-        self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+        self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), pygame.FULLSCREEN)
         pygame.display.set_caption('Pong')
         self.clock = pygame.time.Clock()
         self.running = True
@@ -52,7 +52,7 @@ class Game:
 
         #  # === ADDED: high score display ===
         high_score_surf = self.high_score_font.render(f'High Score: {self.high_score}', True, COLORS['bg detail'])
-        high_score_rect = high_score_surf.get_frect(midtop = (WINDOW_WIDTH/2, 20))
+        high_score_rect = high_score_surf.get_frect(midtop = (WINDOW_WIDTH/8 * .75, 5))
         self.display_surface.blit(high_score_surf, high_score_rect)
 
         # net
