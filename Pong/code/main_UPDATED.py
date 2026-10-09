@@ -87,7 +87,8 @@ class Game:
         else:
             # when ball hits player's wall (opponent scores)
             self.score['opponent'] += 1
-            self.trigger_game_over() # GAME ENDS IF BALL HITS YOUR WALL
+            if self.score['opponent'] == 5:
+                self.trigger_game_over() # GAME ENDS IF BALL HITS YOUR WALL
 
     # === ADDED: Logic to handle game over and record high score ===
     def trigger_game_over(self):

@@ -79,10 +79,12 @@ class Ball(pygame.sprite.Sprite):
                     if self.rect.right >= sprite.rect.left and self.old_rect.right <= sprite.old_rect.left:
                         self.rect.right = sprite.rect.left 
                         self.direction.x *= -1 #bounce the ball of the paddel following collision by changing x direciton
+                        SPEED["ball"] += 50
                     #back of padel
                     if self.rect.left <= sprite.rect.top and self.old_rect.left <= sprite.old_rect.right:
                         self.rect.left = sprite.rect.right
                         self.direction.x *= -1
+                        SPEED["ball"] += 50
                         
                     else:
                         #chekcing if bottom of ball collides with the top of the player in current and old frame
@@ -112,10 +114,9 @@ class Ball(pygame.sprite.Sprite):
 
     def reset(self):
         self.rect.center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2) # WHEN BALL LEAVES THE WINDOW IT IS RESET TO THE MIDDLE OF THE SCREEN
-        self.direction = pygame.Vector2(choice((1, -1)), uniform(0.7, 0.8) *choice((-1, 1)))# ball moves in random direction
-   
-   
-    def update(self, dt):
+        self.direction = pygame.Vector2(choice((1, -1))    , uniform(0.7, 0.8) *choice((-1, 1)))# ball moves in random direction
+        pygame.time.delay(2000)
+    def update(self, dt): 
         self.old_rect = self.rect.copy() #store the old position of the rectangle before moving it in next frame
         self.move(dt)
         self.wall_collision()
